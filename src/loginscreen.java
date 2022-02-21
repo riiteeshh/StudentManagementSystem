@@ -241,7 +241,8 @@ public class loginscreen extends javax.swing.JFrame {
        
        
         if(rs.next()){
-        student_dashboard std_d= new student_dashboard();
+           String roll=crn.getText();
+        student_dashboard std_d= new student_dashboard(roll);
         std_d.setVisible(true);
         std_d.pack();
         std_d.setLocationRelativeTo(null);

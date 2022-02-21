@@ -271,6 +271,11 @@ public class student_dashboard extends javax.swing.JFrame {
         });
 
         resultsearch.setText("SEARCH");
+        resultsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultsearchActionPerformed(evt);
+            }
+        });
 
         routinesearch.setText("SEARCH");
 
@@ -462,7 +467,13 @@ public class student_dashboard extends javax.swing.JFrame {
 
     private void routinesemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routinesemActionPerformed
         // TODO add your handling code here:
+         String selectedroutinesem=routinesem.getSelectedItem().toString();
     }//GEN-LAST:event_routinesemActionPerformed
+
+    private void resultsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsearchActionPerformed
+        // TODO add your handling code here:
+        String selectedresultsem=resultsem.getSelectedItem().toString();
+    }//GEN-LAST:event_resultsearchActionPerformed
 
     /**
      * @param args the command line arguments
