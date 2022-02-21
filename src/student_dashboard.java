@@ -32,6 +32,11 @@ public class student_dashboard extends javax.swing.JFrame {
        this.setLocationRelativeTo(null);
        msg=roll;
        rolls.setText(msg);
+        routinesearch.setVisible(false);
+        routinesem.setVisible(false);
+         resultsearch.setVisible(false);
+        resultsem.setVisible(false);
+       
        
       try{
          
@@ -103,8 +108,8 @@ public class student_dashboard extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        showresult = new javax.swing.JButton();
+        showroutine = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -123,7 +128,7 @@ public class student_dashboard extends javax.swing.JFrame {
         fields = new javax.swing.JLabel();
         level = new javax.swing.JLabel();
         resultsem = new javax.swing.JComboBox<>();
-        routinesem1 = new javax.swing.JComboBox<>();
+        routinesem = new javax.swing.JComboBox<>();
         resultsearch = new javax.swing.JButton();
         routinesearch = new javax.swing.JButton();
 
@@ -191,12 +196,17 @@ public class student_dashboard extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButton2.setText("SHOW RESULTS");
-
-        jButton3.setText("SHOW ROUTINE");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        showresult.setText("SHOW RESULTS");
+        showresult.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                showresultActionPerformed(evt);
+            }
+        });
+
+        showroutine.setText("SHOW ROUTINE");
+        showroutine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showroutineActionPerformed(evt);
             }
         });
 
@@ -253,7 +263,12 @@ public class student_dashboard extends javax.swing.JFrame {
 
         resultsem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "firstsem", "secondsem", "thirdsem", "fourthsem", "fifthsem", "sixthsem", "seventhsem", "eighthsem" }));
 
-        routinesem1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "firstsem", "secondsem", "thirdsem", "fourthsem", "fifthsem", "sixthsem", "seventhsem", "eighthsem" }));
+        routinesem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "firstsem", "secondsem", "thirdsem", "fourthsem", "fifthsem", "sixthsem", "seventhsem", "eighthsem" }));
+        routinesem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routinesemActionPerformed(evt);
+            }
+        });
 
         resultsearch.setText("SEARCH");
 
@@ -327,7 +342,7 @@ public class student_dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(showresult)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(resultsem, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,8 +350,8 @@ public class student_dashboard extends javax.swing.JFrame {
                         .addComponent(resultsearch)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(routinesem1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(showroutine, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(routinesem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(routinesearch)
                 .addGap(28, 28, 28))
@@ -401,12 +416,12 @@ public class student_dashboard extends javax.swing.JFrame {
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(showroutine)
+                    .addComponent(showresult))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resultsem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(routinesem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(routinesem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resultsearch)
                     .addComponent(routinesearch))
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -425,9 +440,29 @@ public class student_dashboard extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void showroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showroutineActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        resultsearch.setVisible(false);
+        resultsem.setVisible(false);
+        routinesearch.setVisible(true);
+        routinesem.setVisible(true);
+        
+        
+    }//GEN-LAST:event_showroutineActionPerformed
+
+    private void showresultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showresultActionPerformed
+        // TODO add your handling code here:
+        resultsearch.setVisible(true);
+        resultsem.setVisible(true);
+        routinesearch.setVisible(false);
+        routinesem.setVisible(false);
+        
+        
+    }//GEN-LAST:event_showresultActionPerformed
+
+    private void routinesemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routinesemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routinesemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,8 +505,6 @@ public class student_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel fields;
     private javax.swing.JLabel fullname;
     private javax.swing.JLabel genders;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -499,7 +532,9 @@ public class student_dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> resultsem;
     private javax.swing.JLabel rolls;
     private javax.swing.JButton routinesearch;
-    private javax.swing.JComboBox<String> routinesem1;
+    private javax.swing.JComboBox<String> routinesem;
+    private javax.swing.JButton showresult;
+    private javax.swing.JButton showroutine;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 }

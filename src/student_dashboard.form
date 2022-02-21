@@ -104,7 +104,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="showresult" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Component id="resultsem" min="-2" pref="107" max="-2" attributes="0"/>
@@ -114,8 +114,8 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="routinesem1" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
+                  <Component id="showroutine" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="routinesem" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="routinesearch" min="-2" max="-2" attributes="0"/>
@@ -197,13 +197,13 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="showroutine" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="showresult" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="resultsem" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="routinesem1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="routinesem" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="resultsearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="routinesearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -339,17 +339,20 @@
         <Property name="orientation" type="int" value="1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="showresult">
       <Properties>
         <Property name="text" type="java.lang.String" value="SHOW RESULTS"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showresultActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="showroutine">
       <Properties>
         <Property name="text" type="java.lang.String" value="SHOW ROUTINE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showroutineActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -507,7 +510,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="routinesem1">
+    <Component class="javax.swing.JComboBox" name="routinesem">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="8">
@@ -522,6 +525,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="routinesemActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
