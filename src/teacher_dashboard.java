@@ -1,3 +1,11 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,6 +22,10 @@ public class teacher_dashboard extends javax.swing.JFrame {
      */
     public teacher_dashboard() {
         initComponents();
+          this.setLocationRelativeTo(null);
+          resultsearchedit.setVisible(false);
+        resultsemedit.setVisible(false);
+        
     }
 
     /**
@@ -28,8 +40,12 @@ public class teacher_dashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         roll = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        showinfo = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+        teacherroutine = new javax.swing.JButton();
+        resultsemedit = new javax.swing.JComboBox<>();
+        resultsearchedit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,9 +53,49 @@ public class teacher_dashboard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel4.setText("Student Roll no. :");
 
-        jButton1.setText("Show Info");
+        showinfo.setText("Show Info");
+        showinfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showinfoActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Show/Edit Marksheet");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        logout.setBackground(new java.awt.Color(250, 0, 0));
+        logout.setFont(new java.awt.Font("SimSun", 1, 10)); // NOI18N
+        logout.setText("LOG OUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
+        teacherroutine.setText("Your Routine");
+        teacherroutine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teacherroutineActionPerformed(evt);
+            }
+        });
+
+        resultsemedit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "firstsem", "secondsem", "thirdsem", "fourthsem", "fifthsem", "sixthsem", "seventhsem", "eighthsem" }));
+        resultsemedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultsemeditActionPerformed(evt);
+            }
+        });
+
+        resultsearchedit.setText("SEARCH");
+        resultsearchedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultsearcheditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -51,24 +107,47 @@ public class teacher_dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(showinfo)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
                     .addComponent(roll))
                 .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(resultsemedit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(resultsearchedit)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(logout)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(teacherroutine)
+                            .addGap(146, 146, 146)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addContainerGap()
+                .addComponent(logout)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(showinfo)
                     .addComponent(jButton2))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resultsemedit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resultsearchedit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(teacherroutine)
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,6 +163,86 @@ public class teacher_dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void showinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showinfoActionPerformed
+        // TODO add your handling code here:
+        
+        
+        if(roll.getText().trim().isEmpty()){
+       JOptionPane.showMessageDialog(null, "Roll no. cannot be Empty");
+       }
+        
+       else{
+        try{
+       Class.forName("com.mysql.cj.jdbc.Driver");
+       Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmgmt", "root", "");
+//       if(con!=null){
+//       JOptionPane.showMessageDialog(null, "connected");
+//       }
+       String sql="Select * from studentlogin where crn=?";
+       PreparedStatement pst= con.prepareCall(sql);
+       pst.setString(1,roll.getText());
+       ResultSet rs = pst.executeQuery();
+       
+       
+        if(rs.next()){
+           String rolls=roll.getText();
+        student_dashboard std_d= new student_dashboard(rolls,1);
+        std_d.setVisible(true);
+        std_d.pack();
+        std_d.setLocationRelativeTo(null);
+        std_d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+       }
+       
+       else{
+       JOptionPane.showMessageDialog(null, "Enter valid user credentials");
+        }
+        con.close();
+       }
+        
+         catch(Exception e){
+       JOptionPane.showMessageDialog(null, e);
+       JOptionPane.showMessageDialog(null, "notconnected");
+       }}
+        
+        
+        
+    }//GEN-LAST:event_showinfoActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        choosingscreen lgs= new choosingscreen();
+        lgs.setVisible(true);
+        lgs.pack();
+        lgs.setLocationRelativeTo(null);
+        lgs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void teacherroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherroutineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_teacherroutineActionPerformed
+
+    private void resultsemeditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsemeditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resultsemeditActionPerformed
+
+    private void resultsearcheditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsearcheditActionPerformed
+        // TODO add your handling code here:
+        String selectedresultsem=resultsemedit.getSelectedItem().toString();
+    }//GEN-LAST:event_resultsearcheditActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+         if(roll.getText().trim().isEmpty()){
+       JOptionPane.showMessageDialog(null, "Roll no. cannot be Empty");
+       }
+         else{
+        resultsearchedit.setVisible(true);
+        resultsemedit.setVisible(true);}
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,10 +280,14 @@ public class teacher_dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton resultsearchedit;
+    private javax.swing.JComboBox<String> resultsemedit;
     private javax.swing.JTextField roll;
+    private javax.swing.JButton showinfo;
+    private javax.swing.JButton teacherroutine;
     // End of variables declaration//GEN-END:variables
 }
