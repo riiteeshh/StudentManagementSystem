@@ -23,6 +23,10 @@ public class student_dashboard extends javax.swing.JFrame {
      */
     public student_dashboard() {
         initComponents();
+        routinesearch.setVisible(false);
+        routinesem.setVisible(false);
+         resultsearch.setVisible(false);
+        resultsem.setVisible(false);
        this.setLocationRelativeTo(null);
     }
     
@@ -71,7 +75,11 @@ public class student_dashboard extends javax.swing.JFrame {
             genders.setText(gender);
              welcome.setText(name);
                
-        } 
+        }
+        
+         else{
+       JOptionPane.showMessageDialog(null, "No data found");
+        }
        
        con.close();
       
@@ -81,6 +89,69 @@ public class student_dashboard extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(null, "notconnected");
        }
     }
+      
+      public student_dashboard(String roll,int n) {
+          
+          String msg;
+        initComponents();
+       this.setLocationRelativeTo(null);
+       msg=roll;
+       rolls.setText(msg);
+        routinesearch.setVisible(false);
+        routinesem.setVisible(false);
+         resultsearch.setVisible(false);
+        resultsem.setVisible(false);
+        showresult.setVisible(false);
+        showroutine.setVisible(false);
+        logout.setVisible(false);
+       
+       
+       
+      try{
+         
+       Class.forName("com.mysql.cj.jdbc.Driver");
+       Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmgmt", "root", "");
+       String sql="Select * from studentinfo where crn=?";
+        PreparedStatement pst= con.prepareCall(sql);
+         pst.setString(1,msg);
+        ResultSet rs = pst.executeQuery();
+        
+        if(rs.next()){
+        
+            String crn= rs.getString("crn");
+            String name= rs.getString("name");
+            String phone_number= rs.getString("phone_number");
+            String address= rs.getString("address");
+            String parent_name= rs.getString("parent_name");
+            String parent_number= rs.getString("parent_number");
+            String degree= rs.getString("degree");
+            String field= rs.getString("field");
+            String gender= rs.getString("gender");
+            String email=rs.getString("email");
+            
+              fullname.setText(name);
+            mail.setText(email);
+            contact.setText(phone_number);
+            residence.setText(address);
+            parentname.setText(parent_name);
+            parentcontact.setText(parent_number);
+            level.setText(degree);
+            fields.setText(field);
+            genders.setText(gender);
+             welcome.setText(name);
+               
+        } 
+       
+       con.close();
+      
+      }
+      catch(Exception e){
+       JOptionPane.showMessageDialog(null, e);
+       JOptionPane.showMessageDialog(null, "notconnected");
+       }
+      
+      
+      }
       
       
     
@@ -154,23 +225,23 @@ public class student_dashboard extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(210, 210, 210)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(welcome)
                     .addComponent(logout))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Sitka Banner", 1, 12)); // NOI18N
@@ -420,16 +491,16 @@ public class student_dashboard extends javax.swing.JFrame {
                             .addComponent(level)))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(showroutine)
-                    .addComponent(showresult))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showresult)
+                    .addComponent(showroutine))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resultsem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(routinesem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resultsearch)
                     .addComponent(routinesearch))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -473,6 +544,44 @@ public class student_dashboard extends javax.swing.JFrame {
     private void resultsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsearchActionPerformed
         // TODO add your handling code here:
         String selectedresultsem=resultsem.getSelectedItem().toString();
+        try{
+            String msg1 =rolls.getText();
+       Class.forName("com.mysql.cj.jdbc.Driver");
+       Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmgmt", "root", "");
+//       if(con!=null){
+//       JOptionPane.showMessageDialog(null, "connected");
+//       }
+       String sql="Select * from studentinfo where crn=?";
+       PreparedStatement pst= con.prepareCall(sql);
+       // pst.setString(1,selectedresultsem);
+       pst.setString(1,msg1);
+    
+       ResultSet rs = pst.executeQuery();
+       
+       
+        if(rs.next()){
+           String rolls=msg1;
+           int i=1;
+        resultscreen std_d= new resultscreen(rolls,selectedresultsem,i);
+        std_d.setVisible(true);
+        std_d.pack();
+        std_d.setLocationRelativeTo(null);
+        std_d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+       }
+       
+       else{
+       JOptionPane.showMessageDialog(null, "Enter valid user credentials");
+        }
+        con.close();
+       }
+       
+       
+       
+       catch(Exception e){
+       JOptionPane.showMessageDialog(null, e);
+       JOptionPane.showMessageDialog(null, "notconnected");
+       }
     }//GEN-LAST:event_resultsearchActionPerformed
 
     /**
