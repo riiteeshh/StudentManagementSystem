@@ -231,6 +231,44 @@ public class teacher_dashboard extends javax.swing.JFrame {
     private void resultsearcheditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsearcheditActionPerformed
         // TODO add your handling code here:
         String selectedresultsem=resultsemedit.getSelectedItem().toString();
+        
+        
+        try{
+       Class.forName("com.mysql.cj.jdbc.Driver");
+       Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmgmt", "root", "");
+//       if(con!=null){
+//       JOptionPane.showMessageDialog(null, "connected");
+//       }
+       String sql="Select * from studentinfo where crn=?";
+       PreparedStatement pst= con.prepareCall(sql);
+       // pst.setString(1,selectedresultsem);
+       pst.setString(1,roll.getText());
+    
+       ResultSet rs = pst.executeQuery();
+       
+       
+        if(rs.next()){
+           String rolls=roll.getText();
+        resultscreen std_d= new resultscreen(rolls,selectedresultsem);
+        std_d.setVisible(true);
+        std_d.pack();
+        std_d.setLocationRelativeTo(null);
+        std_d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+       }
+       
+       else{
+       JOptionPane.showMessageDialog(null, "Enter valid user credentials");
+        }
+        con.close();
+       }
+       
+       
+       
+       catch(Exception e){
+       JOptionPane.showMessageDialog(null, e);
+       JOptionPane.showMessageDialog(null, "notconnected");
+       }
     }//GEN-LAST:event_resultsearcheditActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
