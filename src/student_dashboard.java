@@ -27,6 +27,7 @@ public class student_dashboard extends javax.swing.JFrame {
         routinesem.setVisible(false);
          resultsearch.setVisible(false);
         resultsem.setVisible(false);
+        back.setVisible(false);
        this.setLocationRelativeTo(null);
     }
     
@@ -35,6 +36,7 @@ public class student_dashboard extends javax.swing.JFrame {
         initComponents();
        this.setLocationRelativeTo(null);
        msg=roll;
+        back.setVisible(false);
        rolls.setText(msg);
         routinesearch.setVisible(false);
         routinesem.setVisible(false);
@@ -96,6 +98,7 @@ public class student_dashboard extends javax.swing.JFrame {
         initComponents();
        this.setLocationRelativeTo(null);
        msg=roll;
+       back.setVisible(true);
        rolls.setText(msg);
         routinesearch.setVisible(false);
         routinesem.setVisible(false);
@@ -170,6 +173,7 @@ public class student_dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         welcome = new javax.swing.JLabel();
         logout = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -220,16 +224,26 @@ public class student_dashboard extends javax.swing.JFrame {
             }
         });
 
+        back.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        back.setText("BACK");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
+                .addContainerGap()
+                .addComponent(back)
+                .addGap(133, 133, 133)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addContainerGap())
         );
@@ -240,7 +254,8 @@ public class student_dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(welcome)
-                    .addComponent(logout))
+                    .addComponent(logout)
+                    .addComponent(back))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,6 +364,11 @@ public class student_dashboard extends javax.swing.JFrame {
         });
 
         routinesearch.setText("SEARCH");
+        routinesearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routinesearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -390,11 +410,11 @@ public class student_dashboard extends javax.swing.JFrame {
                         .addComponent(parentname, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(parentcontact, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
@@ -500,7 +520,7 @@ public class student_dashboard extends javax.swing.JFrame {
                     .addComponent(routinesem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resultsearch)
                     .addComponent(routinesearch))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -584,6 +604,30 @@ public class student_dashboard extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_resultsearchActionPerformed
 
+    private void routinesearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routinesearchActionPerformed
+        // TODO add your handling code here:
+        String selectedroutinesem=routinesem.getSelectedItem().toString();
+        String roll=rolls.getText();
+           int i=1;
+        routinescreen std_d= new routinescreen(roll,selectedroutinesem,i);
+        std_d.setVisible(true);
+        std_d.pack();
+        std_d.setLocationRelativeTo(null);
+        std_d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+        
+    }//GEN-LAST:event_routinesearchActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        teacher_dashboard lgs= new teacher_dashboard();
+        lgs.setVisible(true);
+        lgs.pack();
+        lgs.setLocationRelativeTo(null);
+        lgs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -620,6 +664,7 @@ public class student_dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JLabel contact;
     private javax.swing.JLabel dob;
     private javax.swing.JLabel fields;
